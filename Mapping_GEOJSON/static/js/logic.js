@@ -1,9 +1,14 @@
 // Add console.log to check to see if our code is working.
 console.log("working");
 
-// Create the map object with center at the San Francisco airport.
-let map = L.map('mapid').setView([37.5, -122.5], 10);
+// // Create the map object with center at the San Francisco airport.
+// let map = L.map('mapid').setView([37.5, -122.5], 10);
 
+// Create the map object with center and zoom level.
+let map = L.map('mapid').setView([30, 30], 2);
+
+// Accessing the airport GeoJSON URL
+let airportData = "https://raw.githubusercontent.com/<GitHub_name>/Mapping_Earthquakes/main/majorAirports.json";
 
 // Create a polyline using the line coordinates and make the line red.
 // L.polyline(line, {
