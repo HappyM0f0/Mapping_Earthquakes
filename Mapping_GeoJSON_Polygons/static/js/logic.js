@@ -6,8 +6,6 @@ let streets = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
     id: 'mapbox/streets-v11',
-    // tileSize: 512,
-    // zoomOffset: -1,
     accessToken: API_KEY
 });
 
@@ -36,16 +34,17 @@ L.control.layers(baseMaps).addTo(map);
 // Then we add our 'graymap' tile layer to the map.
 // streets.addTo(map);
 
-// Accessing the airport GeoJSON URL  this should be after tileLayer()
-let airportData = "https://raw.githubusercontent.com/HappyM0f0/Mapping_Earthquakes/main/majorAirports.json";
+// Accessing the Toronto neighborhoods GeoJSON URL.
+let torontoHoods = "https://raw.githubusercontent.com/HappyM0f0/Mapping_Earthquakes/main/torontoNeighborhoods.json";
+
 
 // Grabbing our GeoJSON data.
-d3.json(airportData).then(function(data) {
+d3.json(torontoHoods).then(function(data) {
   console.log(data);
 // Creating a GeoJSON layer with the retrieved data.
 L.geoJSON(data, {
     onEachFeature: function(feature, layer) {
-      layer.bindPopup(`<h2>Airport Code: ${feature.properties.faa}</h2> <hr> <h4>Airport Name: ${feature.properties.name}</h4>`);
+      layer.bindPopup(`<h2>Area Name: ${feature.properties.AREA_NAME}</h2> <hr> <h4>Area CD: ${feature.properties.AREA_S_CD}</h4>`);
      }}).addTo(map);
 });
 
