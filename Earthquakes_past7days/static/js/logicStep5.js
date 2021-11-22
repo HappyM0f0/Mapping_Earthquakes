@@ -35,7 +35,7 @@ let map = L.map('mapid', {
   center: [39.5, -98.5],
   zoom: 3,
   layers: [streets]
-})
+});
 
 // Grabbing our GeoJSON data.
 d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson").then(function(data) {
@@ -53,56 +53,57 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoj
       stroke: true,
       weight: 0.5
     };
-  };
+  }
   // This function determines the color of the circle based on the magnitude of the earthquake.
-function getColor(magnitude) {
-  if (magnitude > 5) {
-    return "#ea2c2c";
+  function getColor(magnitude) {
+    if (magnitude > 5) {
+      return "#ea2c2c";
+    }
+    if (magnitude > 4) {
+      return "#ea822c";
+    }
+    if (magnitude > 3) {
+      return "#ee9c00";
+    }
+    if (magnitude > 2) {
+      return "#eecc00";
+    }
+    if (magnitude > 1) {
+      return "#d4ee00";
+    }
+    return "#98ee00";
   }
-  if (magnitude > 4) {
-    return "#ea822c";
-  }
-  if (magnitude > 3) {
-    return "#ee9c00";
-  }
-  if (magnitude > 2) {
-    return "#eecc00";
-  }
-  if (magnitude > 1) {
-    return "#d4ee00";
-  }
-  return "#98ee00";
-}
   // This function determines the radius of the earthquake marker based on its magnitude.
-// Earthquakes with a magnitude of 0 will be plotted with a radius of 1.
+  // Earthquakes with a magnitude of 0 will be plotted with a radius of 1.
   function getRadius(magnitude) {
     if (magnitude === 0) {
       return 1;
     }
     return magnitude * 4;
-  };
+  }
+
 // Creating a GeoJSON layer with the retrieved data.
 L.geoJSON(data, {
   pointToLayer: function(feature, latlng) {
     // console.log(data);
     return L.circleMarker(latlng);
      },
-     style: styleInfo,
-     onEachFeature: function(feature, layer) {
-      layer.bindPopup("Magnitude: " + feature.properties.mag + "<br>Location: " + feature.properties.place);
-     }     
-    }).addTo(earthquakes);
+  style: styleInfo,
+    onEachFeature: function(feature, layer) {
+    layer.bindPopup("Magnitude: " + feature.properties.mag + "<br>Location: " + feature.properties.place);
+    }     
+  }).addTo(earthquakes);
 
-    earthquakes.addTo(map);
-});
+  earthquakes.addTo(map);
 
-var legend = L.control({position: 'bottomright'});
+let legend = L.control({position: 'bottomright'});
 
 legend.onAdd = function () {
 
-let div = L.DomUtil.create('div', 'info legend'),
-const magnitudes = [0, 1, 2, 3, 4, 5];
-const colors = [
+  let div = L.DomUtil.create('div', 'info legend');
+  
+  const magnitudes = [0, 1, 2, 3, 4, 5];
+  const colors = [
   "#98ee00",
   "#d4ee00",
   "#eecc00",
@@ -133,4 +134,4 @@ legend.addTo(map);
 // mapbox/satellite-streets-v11
 //  OTHER MAP IDS END
 
-
+});
