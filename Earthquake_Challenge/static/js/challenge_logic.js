@@ -72,6 +72,9 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoj
 
   // This function determines the color of the marker based on the magnitude of the earthquake.
   function getColor(magnitude) {
+    if (magnitude > 6) {
+      return "#641E16";  //legend only provided 5+ colors
+    }
     if (magnitude > 5) {
       return "#ea2c2c";
     }
@@ -137,7 +140,7 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoj
   // 5.2 Change the color function to use three colors for the major earthquakes based on the magnitude of the earthquake.
     function getMajorColor(magnitude) {
       if (magnitude > 6) {
-        return "#A93226";  //legend only provided 5+ colors
+        return "#641E16";  //legend only provided 5+ colors
       }
       if (magnitude > 5) {
         return "#ea2c2c";
@@ -182,7 +185,7 @@ legend.onAdd = function() {
     "#ee9c00",
     "#ea822c",
     "#ea2c2c",
-    "#A93226"
+    "#641E16"
   ];
 
 // Looping through our intervals to generate a label with a colored square for each interval.
