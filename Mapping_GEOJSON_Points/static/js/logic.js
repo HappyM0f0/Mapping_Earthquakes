@@ -93,18 +93,6 @@ L.control.layers(baseMaps).addTo(map);
 // Accessing the airport GeoJSON URL  this should be after tileLayer()
 let airportData = "https://raw.githubusercontent.com/HappyM0f0/Mapping_Earthquakes/main/majorAirports.json";
 
-let torontoData = "https://raw.githubusercontent.com/HappyM0f0/Mapping_Earthquakes/main/torontoRoutes.json"
-
-// // Grabbing our GeoJSON data.
-// d3.json(airportData).then(function(data) {
-//   console.log(data);
-// // Creating a GeoJSON layer with the retrieved data.
-// L.geoJSON(data, {
-//     onEachFeature: function(feature, layer) {
-//       layer.bindPopup(`<h2>Airport Code: ${feature.properties.faa}</h2> <hr> <h4>Airport Name: ${feature.properties.name}</h4>`);
-//      }}).addTo(map);
-// });
-
 // Create a style for the lines.
 let myStyle = {
   color: "yellow",
